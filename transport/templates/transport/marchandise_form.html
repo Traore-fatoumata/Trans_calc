@@ -1,0 +1,21 @@
+{% extends 'transport/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 style="color: #007bff; margin-bottom: 1.5rem;"> {# Titre en bleu #}
+        {% if form.instance.pk %}Modifier{% else %}Ajouter{% endif %} une Marchandise
+    </h2>
+
+    <form method="post" style="background-color: #f8f9fa; padding: 25px; border-radius: 8px; border: 1px solid #dee2e6;"> {# Fond clair, padding, bordures arrondies et bordure légère #}
+        {% csrf_token %}
+
+        {# Les champs du formulaire sont rendus ici par {{ form.as_p }} #}
+        {# Note: Le style des labels et des champs de saisie eux-mêmes est géré par les feuilles de style de Bootstrap #}
+        {# ou les styles par défaut du navigateur, car il n'est pas possible d'appliquer des styles inline directement ici. #}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn" style="background-color: #28a745; color: white; margin-top: 15px; margin-right: 10px;">Enregistrer</button> {# Bouton vert, texte blanc, marges #}
+        <a href="{% url 'marchandise_list' %}" class="btn" style="background-color: #6c757d; color: white; margin-top: 15px;">Annuler</a> {# Bouton gris, texte blanc, marges #}
+    </form>
+</div>
+{% endblock %}

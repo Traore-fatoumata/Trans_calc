@@ -1,0 +1,19 @@
+{% extends 'transport/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card" style="border: 1px solid #dc3545;"> {# Bordure rouge pour la carte #}
+        <div class="card-header" style="background-color: #dc3545; color: white;"> {# En-tête rouge, texte blanc #}
+            <h2 style="margin-bottom: 0; color: white;">Confirmer la suppression</h2> {# Titre blanc #}
+        </div>
+        <div class="card-body" style="background-color: #f8f9fa;"> {# Fond blanc/gris très clair #}
+            <p style="color: #343a40;">Êtes-vous sûr de vouloir supprimer la marchandise <strong style="color: #007bff;">{{ object.nom }}</strong> ?</p> {# Texte sombre, nom de l'objet en bleu #}
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn" style="background-color: #dc3545; color: white; margin-right: 10px;">Confirmer la suppression</button> {# Bouton rouge, texte blanc, marge droite #}
+                <a href="{% url 'marchandise_list' %}" class="btn" style="background-color: #6c757d; color: white;">Annuler</a> {# Bouton gris, texte blanc #}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

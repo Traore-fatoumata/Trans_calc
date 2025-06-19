@@ -1,0 +1,38 @@
+{% extends "transport/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <a href="{% url 'login' %}" class="btn" style="background-color: #007bff; color: white; margin-bottom: 1rem;">Retour</a> {# Bouton bleu, texte blanc, marge inférieure #}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="border: 1px solid #007bff;"> {# Bordure bleue pour la carte principale #}
+                <div class="card-header" style="background-color: #007bff; color: white;"> {# En-tête bleu, texte blanc #}
+                    <h2 style="margin-bottom: 0; color: white;"><i class="fas fa-tachometer-alt me-2"></i>Tableau de bord</h2> {# Titre blanc #}
+                </div>
+                <div class="card-body" style="background-color: #f8f9fa;"> {# Fond blanc/gris très clair #}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card text-white mb-3" style="background-color: #28a745 !important; border: 1px solid #28a745;"> {# Carte verte pour Marchandises #}
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: white;">Marchandises</h5> {# Titre blanc #}
+                                    <p class="card-text" style="color: white;">Gérez vos marchandises</p> {# Texte blanc #}
+                                    <a href="{% url 'marchandise_list' %}" class="btn" style="background-color: white; color: #28a745;">Accéder</a> {# Bouton blanc avec texte vert #}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-white mb-3" style="background-color: #17a2b8 !important; border: 1px solid #17a2b8;"> {# Carte cyan/info pour Cargaisons #}
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: white;">Cargaisons</h5> {# Titre blanc #}
+                                    <p class="card-text" style="color: white;">Gérez vos cargaisons</p> {# Texte blanc #}
+                                    <a href="{% url 'cargaison_list' %}" class="btn" style="background-color: white; color: #17a2b8;">Accéder</a> {# Bouton blanc avec texte cyan #}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'transport/base.html' %}
+
+{% block content %}
+<div class="container my-4"> {# Conteneur Bootstrap pour le padding et le centrage #}
+
+    <h2 style="color: #dc3545; margin-bottom: 1.5rem;">Confirmer la suppression</h2> {# Titre en rouge pour alerter #}
+
+    <div class="alert alert-warning" role="alert" style="background-color: #fff3cd; border-color: #ffeeba; color: #856404;"> {# Alerte jaune/orange pour la confirmation #}
+        <p style="margin-bottom: 0;">Êtes-vous sûr de vouloir supprimer la cargaison "<strong style="color: #007bff;">{{ object }}</strong>"?</p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn" style="background-color: #dc3545; color: white; margin-right: 10px;">Confirmer la suppression</button> {# Bouton rouge pour la suppression #}
+        <a href="{% url 'cargaison_list' %}" class="btn" style="background-color: #6c757d; color: white;">Annuler</a> {# Bouton gris pour annuler #}
+    </form>
+
+</div>
+{% endblock %}
