@@ -1,0 +1,107 @@
+{% extends "transport/base.html" %}
+
+{% block content %}
+<style>
+  .dashboard-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+  }
+
+  .card-header-custom {
+    background-color: #0d6efd;
+    border-radius: 0.5rem 0.5rem 0 0;
+    padding: 1rem 1.25rem;
+    box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .dashboard-card {
+    border: 1px solid #0d6efd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.15);
+    background-color: white;
+  }
+
+  .dashboard-subcard {
+    border: 1px solid #0d6efd;
+    border-radius: 12px;
+    background-color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .dashboard-subcard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(13, 110, 253, 0.3);
+  }
+
+  .dashboard-subcard h5 {
+    font-weight: 600;
+    color: #0d6efd;
+  }
+
+  .dashboard-subcard p {
+    color: #333;
+  }
+
+  .dashboard-subcard a {
+    background-color: #0d6efd;
+    color: white;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .dashboard-subcard a:hover {
+    background-color: #0841c3;
+  }
+
+  .btn-retour {
+    background-color: #0d6efd;
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .btn-retour:hover {
+    background-color: #0841c3;
+    color: white;
+  }
+</style>
+
+<div class="container mt-4">
+    <a href="{% url 'login' %}" class="btn btn-retour">
+        <i class="fas fa-arrow-left me-1"></i> Retour
+    </a>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="dashboard-card p-0">
+                <div class="card-header-custom">
+                    <h2 class="dashboard-title"><i class="fas fa-tachometer-alt me-2"></i>Tableau de bord</h2>
+                </div>
+                <div class="card-body" style="background-color: #f8f9fa;">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="dashboard-subcard p-4 mb-4 text-center">
+                                <h5><i class="fas fa-box me-2"></i>Marchandises</h5>
+                                <p>Gérez vos marchandises</p>
+                                <a href="{% url 'marchandise_list' %}">Accéder</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dashboard-subcard p-4 mb-4 text-center">
+                                <h5><i class="fas fa-shipping-fast me-2"></i>Cargaisons</h5>
+                                <p>Gérez vos cargaisons</p>
+                                <a href="{% url 'cargaison_list' %}">Accéder</a>
+                            </div>
+                        </div>
+                        <!-- Ajoute d'autres cartes ici si nécessaire -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

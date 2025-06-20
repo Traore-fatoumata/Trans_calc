@@ -1,0 +1,245 @@
+{% extends "transport/base.html" %}
+
+{% block content %}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  /* Reset & base */
+  body, html {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(135deg, #e3f0ff, #c0d9ff);
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Animation fadeInUp */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .login-container {
+    max-width: 440px;
+    margin: 6rem auto 3rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 22px;
+    box-shadow:
+      0 12px 20px rgba(13, 110, 253, 0.3),
+      inset 0 0 8px #cce0ff;
+    padding: 3.5rem 3rem 4rem;
+    backdrop-filter: saturate(200%) blur(12px);
+    -webkit-backdrop-filter: saturate(200%) blur(12px);
+    animation: fadeInUp 0.7s ease forwards;
+  }
+
+  .login-header {
+    text-align: center;
+    margin-bottom: 2.8rem;
+    color: #0d6efd;
+  }
+
+  .login-header .logo {
+    font-size: 3.6rem;
+    margin-bottom: 0.3rem;
+    text-shadow: 0 0 8px #0d6efdaa;
+    color: #0d6efd;
+  }
+
+  .login-header h1 {
+    font-weight: 700;
+    font-size: 2.25rem;
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.05em;
+  }
+
+  .login-header p {
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: #3a5fc1dd;
+  }
+
+  label {
+    font-weight: 600;
+    color: #0d6efd;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+  }
+
+  input.form-control {
+    border: none;
+    border-radius: 16px;
+    background: #f0f6ff;
+    box-shadow:
+      6px 6px 10px #c3d0ff,
+      -6px -6px 10px #ffffff;
+    padding: 0.75rem 1.25rem;
+    font-size: 1.1rem;
+    transition: all 0.4s ease;
+    outline-offset: 4px;
+  }
+
+  input.form-control:focus {
+    background: #e2eaff;
+    box-shadow:
+      inset 2px 2px 6px #acc8ff,
+      inset -2px -2px 6px #ffffff,
+      0 0 8px #0a58ca;
+    outline: none;
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .btn-primary, .btn-reset {
+    flex: 1;
+    font-weight: 700;
+    font-size: 1.15rem;
+    padding: 0.75rem;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+  .btn-primary {
+    background: #0d6efd;
+    color: white;
+    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.5);
+  }
+
+  .btn-primary:hover {
+    background: #0841c3;
+    box-shadow: 0 10px 25px rgba(8, 65, 195, 0.65);
+  }
+
+  .btn-reset {
+    background: #f0f6ff;
+    color: #0d6efd;
+    box-shadow:
+      4px 4px 8px #c3d0ff,
+      -4px -4px 8px #ffffff;
+  }
+
+  .btn-reset:hover {
+    background: #d9e3ff;
+    color: #0841c3;
+  }
+
+  /* Message erreur */
+  .alert-danger {
+    background: #ffe5e5;
+    border-radius: 16px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.6rem;
+    font-weight: 600;
+    color: #b71c1c;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    animation: fadeInUp 0.8s ease forwards;
+    box-shadow: 0 4px 12px rgba(183, 28, 28, 0.18);
+  }
+
+  .alert-danger i {
+    font-size: 1.4rem;
+  }
+
+  .register-link {
+    color: #0d6efd;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 2.6rem;
+    font-size: 1rem;
+  }
+
+  .register-link a {
+    color: #0d6efd;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+  }
+
+  .register-link a:hover {
+    color: #0841c3;
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .login-container {
+      margin: 3rem 1rem 2rem;
+      padding: 2.5rem 1.8rem 3rem;
+      max-width: 100%;
+      border-radius: 14px;
+    }
+    .login-header h1 {
+      font-size: 1.8rem;
+    }
+    .login-header p {
+      font-size: 0.9rem;
+    }
+    input.form-control {
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+      border-radius: 14px;
+    }
+    .btn-primary, .btn-reset {
+      font-size: 1rem;
+      border-radius: 14px;
+      padding: 0.65rem;
+    }
+  }
+</style>
+
+<div class="login-container" role="main" aria-label="Formulaire de connexion TransportCalc Pro">
+    <div class="login-header">
+        <div class="logo" aria-hidden="true"><i class="fas fa-truck-fast"></i></div>
+        <h1>TransportCalc Pro</h1>
+        <p>Solution de gestion de transport</p>
+    </div>
+
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert" aria-live="assertive" aria-atomic="true">
+        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+        Identifiants incorrects. Veuillez réessayer.
+    </div>
+    {% endif %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="id_username" class="form-label">Nom d'utilisateur</label>
+            <input type="text" name="username" class="form-control form-control-lg" id="id_username" required autofocus autocomplete="username" aria-describedby="usernameHelp">
+        </div>
+        <div class="mb-4">
+            <label for="id_password" class="form-label">Mot de passe</label>
+            <input type="password" name="password" class="form-control form-control-lg" id="id_password" required autocomplete="current-password" aria-describedby="passwordHelp">
+        </div>
+
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary" aria-label="Se connecter">
+            <i class="fas fa-sign-in-alt me-2" aria-hidden="true"></i>Se connecter
+          </button>
+          <button type="reset" class="btn btn-reset" aria-label="Réinitialiser le formulaire">Réinitialiser</button>
+        </div>
+
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+
+    <div class="register-link">
+        <p>Nouveau utilisateur? <a href="{% url 'register' %}">Créer un compte</a></p>
+    </div>
+</div>
+{% endblock %}

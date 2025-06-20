@@ -1,0 +1,35 @@
+{% extends 'transport/base.html' %}
+
+{% block content %}
+<div class="container my-4"> {# Conteneur Bootstrap pour le padding et le centrage #}
+
+    <h2 style="color: #007bff; margin-bottom: 1.5rem;">Résultat du calcul pour la cargaison {{ cargaison.id }}</h2>
+
+    <div class="card mb-4" style="border: 1px solid #007bff;"> {# Bordure bleue #}
+        <div class="card-header" style="background-color: #007bff; color: white;"> {# Fond bleu, texte blanc #}
+            Statistiques
+        </div>
+        <div class="card-body" style="background-color: #f8f9fa;"> {# Fond blanc/gris très clair #}
+            <ul class="list-unstyled">
+                <li style="margin-bottom: 0.5rem;"><strong>Type:</strong> <span style="color: #17a2b8;">{{ cargaison.get_type_cargaison_display }}</span></li> {# Bleu légèrement différent #}
+                <li style="margin-bottom: 0.5rem;"><strong>Distance:</strong> <span style="color: #6c757d;">{{ cargaison.distance }} km</span></li> {# Gris foncé #}
+                <li style="margin-bottom: 0.5rem;"><strong>Nombre de marchandises:</strong> <span style="color: #6c757d;">{{ stats.nombre_marchandises }}</span></li>
+                <li style="margin-bottom: 0.5rem;"><strong>Poids total:</strong> <span style="color: #6c757d;">{{ stats.poids_total }} kg</span></li>
+                <li style="margin-bottom: 0.5rem;"><strong>Volume total:</strong> <span style="color: #6c757d;">{{ stats.volume_total }} cm³</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card" style="border: 1px solid #28a745;"> {# Bordure verte pour le contraste #}
+        <div class="card-header" style="background-color: #28a745; color: white;"> {# Fond vert, texte blanc #}
+            Coût total estimé
+        </div>
+        <div class="card-body text-center" style="background-color: white;"> {# Fond blanc, texte centré #}
+            <h3 class="display-4" style="color: #007bff; font-weight: bold;">{{ cout|floatformat:2 }} Gnf</h3> {# Texte bleu, gras, grande taille #}
+        </div>
+    </div>
+
+    <a href="{% url 'cargaison_list' %}" class="btn mt-4" style="background-color: #007bff; color: white;">Retour à la liste</a> {# Bouton bleu avec texte blanc #}
+
+</div>
+{% endblock %}

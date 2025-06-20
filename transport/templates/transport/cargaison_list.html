@@ -1,0 +1,45 @@
+{% extends 'transport/base.html' %}
+
+{% block content %}
+<div class="container my-4"> {# Conteneur Bootstrap pour le padding et le centrage #}
+
+    <h1 style="color: #007bff; margin-bottom: 1.5rem;">Liste des Cargaisons</h1> {# Titre en bleu #}
+
+    <div class="mb-3"> {# Conteneur pour les boutons, pour une meilleure gestion des marges #}
+        <a href="{% url 'dashboard' %}" class="btn" style="background-color: #6c757d; color: white; margin-right: 0.5rem;">Retour</a> {# Bouton gris, texte blanc, petite marge à droite #}
+        <a href="{% url 'cargaison_create' %}" class="btn" style="background-color: #007bff; color: white;">Nouvelle cargaison</a> {# Bouton bleu, texte blanc #}
+    </div>
+
+    <table class="table table-striped" style="border: 1px solid #dee2e6;"> {# Bordure pour la table #}
+        <thead style="background-color: #007bff; color: white;"> {# En-tête de tableau bleu avec texte blanc #}
+            <tr>
+                <th style="padding: 0.75rem;">ID</th>
+                <th style="padding: 0.75rem;">Type</th>
+                <th style="padding: 0.75rem;">Distance (km)</th>
+                <th style="padding: 0.75rem;">Nombre de marchandises</th>
+                <th style="padding: 0.75rem;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cargaison in cargaisons %}
+            <tr>
+                <td style="padding: 0.75rem;">{{ cargaison.id }}</td>
+                <td style="padding: 0.75rem;">{{ cargaison.get_type_cargaison_display }}</td>
+                <td style="padding: 0.75rem;">{{ cargaison.distance }}</td>
+                <td style="padding: 0.75rem;">{{ cargaison.marchandises.count }}</td>
+                <td style="padding: 0.75rem;">
+                    <div class="btn-group" role="group">
+                        <a href="{% url 'calculer_cout' cargaison.pk %}" class="btn btn-sm" style="background-color: #17a2b8; color: white; margin-right: 0.25rem;">Calculer coût</a> {# Bouton info/cyan #}
+                        <a href="{% url 'cargaison_delete' cargaison.pk %}" class="btn btn-sm" style="background-color: #dc3545; color: white;">Supprimer</a> {# Bouton rouge #}
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center" style="color: #6c757d; padding: 1.5rem;">Aucune cargaison enregistrée</td> {# Texte gris centré, plus de padding #}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

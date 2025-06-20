@@ -1,0 +1,47 @@
+{% extends 'transport/base.html' %}
+
+{% block content %}
+<div class="container my-4"> {# Conteneur Bootstrap pour le padding et le centrage #}
+
+    <h2 style="color: #007bff; margin-bottom: 1.5rem;">Liste des Marchandises</h2> {# Titre en bleu #}
+
+    <div class="mb-3"> {# Conteneur pour les boutons, pour une meilleure gestion des marges #}
+        <a href="{% url 'dashboard' %}" class="btn" style="background-color: #6c757d; color: white; margin-right: 0.5rem;">Retour</a> {# Bouton gris, texte blanc, petite marge à droite #}
+        <a href="{% url 'marchandise_create' %}" class="btn" style="background-color: #007bff; color: white;">Ajouter une marchandise</a> {# Bouton bleu, texte blanc #}
+    </div>
+
+    <table class="table table-striped" style="border: 1px solid #dee2e6;"> {# Bordure pour la table #}
+        <thead style="background-color: #007bff; color: white;"> {# En-tête de tableau bleu avec texte blanc #}
+            <tr>
+                <th style="padding: 0.75rem;">Numéro</th>
+                <th style="padding: 0.75rem;">Nom</th>
+                <th style="padding: 0.75rem;">Type</th>
+                <th style="padding: 0.75rem;">Poids (kg)</th>
+                <th style="padding: 0.75rem;">Volume (cm³)</th>
+                <th style="padding: 0.75rem;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for marchandise in marchandises %}
+            <tr>
+                <td style="padding: 0.75rem;">{{ marchandise.numero }}</td>
+                <td style="padding: 0.75rem;">{{ marchandise.nom }}</td>
+                <td style="padding: 0.75rem;">{{ marchandise.get_type_cargaison_display }}</td>
+                <td style="padding: 0.75rem;">{{ marchandise.poids }}</td>
+                <td style="padding: 0.75rem;">{{ marchandise.volume }}</td>
+                <td style="padding: 0.75rem;">
+                    <div class="btn-group" role="group">
+                        <a href="{% url 'marchandise_update' marchandise.pk %}" class="btn btn-sm" style="background-color: #ffc107; color: #212529; margin-right: 0.25rem;">Modifier</a> {# Bouton jaune/warning, texte sombre #}
+                        <a href="{% url 'marchandise_delete' marchandise.pk %}" class="btn btn-sm" style="background-color: #dc3545; color: white;">Supprimer</a> {# Bouton rouge, texte blanc #}
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center" style="color: #6c757d; padding: 1.5rem;">Aucune marchandise enregistrée</td> {# Texte gris centré, plus de padding #}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
